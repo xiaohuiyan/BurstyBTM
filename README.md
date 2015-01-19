@@ -25,10 +25,10 @@ Indeed, the *runExample.sh* processes the input documents in 4 steps.
 **1. Index the words in the documents**   
    To simplify the main code, we provide a python script to map each word to a unique ID (starts from 0) in the documents. 
 
-    $ python script/indexDocs.py <doc_pt> <dwid_pt> <voca_pt>
-      doc_pt    input docs to be indexed, each line is a doc with the format "word word ..."
+     $ python script/indexDocs.py <doc_pt> <dwid_pt> <voca_pt>
+      doc_ptinput docs to be indexed, each line is a doc with the format "word word ..."
       dwid_pt   output docs after indexing, each line is a doc with the format "wordId wordId ..."
-      voca_pt   output vocabulary file, each line is a word with the format "wordId     word"
+      voca_pt   output vocabulary file, each line is a word with the format "wordId word"
 
 **2. Statistic daily frequencies for each biterm**
 
@@ -63,19 +63,7 @@ Indeed, the *runExample.sh* processes the input documents in 4 steps.
    The results will be written into the directory "model\_dir":   
    - k20.day1.type-n.iter100.pw_z: a K*M matrix for P(w|z), suppose K=20, day=1, iter=100, and did not use the simplified model   
    - k20.day1.type-n.iter100.pz:   a K*1 matrix for P(z), suppose K=20
-<!--
-**3. Inference topic proportions for documents, i.e., P(z|d)**     
-   If you need to analysis the topic proportions of each documents, just run the following common to infer that using the model estimated.
 
-    $ ./src/btm inf <type> <K> <docs_pt> <model_dir>
-      K	int, number of topics, like 20
-      type	 string, 4 choices:sum_w, sum_b, lda, mix. sum_b is used in our  paper.
-      docs_pt	string, path of docs to be inferred
-      model_dir	string, output directory
-
-   The result will be output to "model_dir":   
-   - k20.pz_d: a N*K matrix for P(z|d), suppose K=20
-   - -->
   
 **5. Results display**    
    Finally, we also provide a python script to illustrate the top words of the topics and their proportions in the collection. 
