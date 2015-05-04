@@ -24,7 +24,7 @@ def proc_day(bdf_pt, day, res_pt):
 def computeEta(df, day):    
     eps = 0.01  # epsilon in the paper
     # avgf = sum(df.values()) / float(len(df))
-    avgf = sum([f for d, f in df.items() if d >= day - 10 and d < day]) / float(min(day, 10))
+    avgf = sum([f for d, f in df.items() if d >= day - 10 and d <= day]) / float(min(day, 10))
     if avgf < 5:
         return eps
     else:
