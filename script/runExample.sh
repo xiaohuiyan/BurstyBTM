@@ -8,9 +8,10 @@ K=20   # number of topics
 alpha=`echo "scale=3;50/$K"|bc`
 beta=0.01
 n_day=3
-n_iter=100
+n_iter=1
 ix_b='n'	# 'n' is not fix, 'y' is fix
 
+mkdir -p ../output/eta ../output/doc_wids ../output/model
 input_dir=../sample-data/
 output_dir=../output/
 dwid_dir=${output_dir}doc_wids/
