@@ -12,48 +12,47 @@
 using namespace std;
 
 class Doc {
-private:
-	vector<int> ws;	// word sequence
+public:
+  string id;
+  vector<int> ws;  // word sequence
 
 public:
-	Doc(const string& s) {
-		read_doc(s);
-	}
+  Doc(const string &s) {
+    read_doc(s);
+  }
 
-	int size() const {
-		return ws.size();
-	}
+  int size() const {
+    return ws.size();
+  }
 
-	const vector<int>& get_ws() const {
-		return ws;
-	}
-
-	const int get_w(size_t i) const {
-		assert(i < ws.size());
-		return ws[i];
-	}
-
-	/**
-	 * Extract biterms from a document
-	 *   `win`:  window size for biterm extraction
-	 *   `bs`: the output biterms
-	 */
-	void gen_biterms(vector<Biterm>& bs, int win = 15) const {
-		if (ws.size() < 2)
-			return;
-
-		for (int i = 0; i < ws.size() - 1; ++i)
-			for (int j = i + 1; j < min(i + win, int(ws.size())); ++j)
-				bs.push_back(Biterm(ws[i], ws[j]));
-	}
+  /**
+   * Extract biterms from a document
+   *   `win`:  window size for biterm extraction
+   *   `bs`: the output biterms
+   */
+  vector<Biterm> gen_biterms(int win = 15) const {
+    vector<Biterm> bs;
+    for (int i = 0; i < ws.size() - 1; ++i)
+      for (int j = i + 1; j < min(i + win, int(ws.size())); ++j)
+        bs.push_back(Biterm(ws[i], ws[j]));
+    return bs;
+  }
 
 private:
-	void read_doc(const string& s) {
-		istringstream iss(s);
-		int w;
-		while (iss >> w)
-			ws.push_back(w);
-	}
+  void read_doc(const string &s) {
+    vector<string> tmps = str_util::split(s, '\t');
+    string doc;
+    if (tmps.size() == 1) {
+      doc = s;
+    } else {
+      id = tmps[0];
+      doc = tmps[1];
+    }
+    istringstream iss(doc);
+    int w;
+    while (iss >> w)
+      ws.push_back(w);
+  }
 };
 
 #endif

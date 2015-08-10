@@ -82,8 +82,8 @@ namespace str_util {
     for (int i = 0; i < kvs.size(); ++i) {
       vector<string> kv = split(kvs[i], ':');
       assert(kv.size() == 2);
-	  int k = str_util::stoi(kv[0]);
-	  double v = str_util::stof(kv[1]);
+      int k = stoi(kv[0]);
+      double v = stof(kv[1]);
       m[k] = v;
     }
     return m;

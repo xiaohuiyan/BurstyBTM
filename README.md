@@ -10,8 +10,9 @@ More detail can be referred to the following paper:
 ## Usage ##
 
 The code includes a runnable example, you can run it by:
-
-       $ script/runExample.sh
+	
+	   $ cd script
+       $ ./runExample.sh
 
 It trains BTM over the documents in *sample-data/0.txt, 1.txt, ...* and output the topics. The n.txt contains the training documents in day *n*, where each line represents one document with words separated by space as:
 > word1 word2 word3 ....
@@ -47,14 +48,13 @@ Indeed, the *runExample.sh* processes the input documents in 4 steps.
 **4. Topic learning**  
    The next step is to train the model using the documents represented by word ids.    
 
-    $./src/bbtm <K> <W> <alpha> <beta> <n_iter> <save_step> <biterm_pt> <model_dir> <fix_b>
+    $./src/bbtm <K> <W> <alpha> <beta> <n_iter> <biterm_pt> <model_dir> <fix_b>
 	 type	's' means simplified BurstyBTM, 'n' means normal BurstyBTM
 	 K	int, number of topics, like 20
 	 W	int, the size of vocabulary
 	 alpha	double, Symmetric Dirichlet prior of P(z), like 1
 	 beta	double, Symmetric Dirichlet prior of P(w|z), like 0.01
 	 n_iter	int, number of iterations of Gibbs sampling
-	 save_step	int, steps to save the results
 	 biterm_pt	string, path of training biterms, each line is a biterm with the format 'wi wj eta'
 	 model_dir	string, output directory
 	 fix_b	'y' means fixing the background word distribution to the empirical word distribution

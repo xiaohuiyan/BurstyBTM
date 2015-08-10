@@ -49,8 +49,8 @@ if __name__ == '__main__':
     voca = read_voca(voca_pt)    
     print 'n(word)=', len(voca)
     print 'Notice: The first topic is background topic, while others are bursty ones.'
-    pz_pt = model_dir + 'pz'
+    pz_pt = model_dir + '.pz'
     pz = read_pz(pz_pt)
         
-    zw_pt = model_dir + 'pw_z'
+    zw_pt = model_dir + '.pw_z'
     dispTopics(zw_pt, voca, pz)

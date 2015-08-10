@@ -9,8 +9,7 @@ alpha=`echo "scale=3;50/$K"|bc`
 beta=0.01
 n_day=3
 n_iter=100
-save_step=20
-fix_b='n'	# 'n' is not fix, 'y' is fix
+ix_b='n'	# 'n' is not fix, 'y' is fix
 
 input_dir=../sample-data/
 output_dir=../output/
@@ -38,14 +37,15 @@ for day in `seq 1 $[$n_day-1]`; do
 	echo "---------- day $day --------------"
 	dwid_pt=$dwid_dir$day.txt
 	eta_pt=$eta_dir$day.txt
-	res_dir=${model_dir}k$K.day$day.type-$type.
-	../src/bbtm $type $K $W $alpha $beta $n_iter $save_step $eta_pt $dwid_pt $res_dir $fix_b
+	echo $eta_pt
+	res_dir=${model_dir}k$K.day$day.type-$type
+	../src/bbtm $type $K $W $alpha $beta $n_iter $eta_pt $dwid_pt $res_dir $fix_b
 done
 
 # ## output top words of each topic
 echo "================ Topic Display ============="
 for day in `seq 1 $[$n_day-1]`; do
 	echo "---------- day $day --------------"
-	res_dir=${model_dir}k$K.day$day.type-$type.iter$n_iter.
+	res_dir=${model_dir}k$K.day$day.type-$type
 	python topicDisplay.py $voca_pt $res_dir 
 done

@@ -1,21 +1,23 @@
 CC=g++
 CFLAGS=-c -pipe -O3
-INCLUDE=-I /home/xh/jianguoyun/my/code/cpp/mylib
-#SRC=$(wildcard *.cpp)
-MODEL_OBJ=BurstyBTM.o main.o
-MODEL_EXE=bbtm
+#INCLUDE=-I /home/xh/jianguoyun/my/code/cpp/mylib
+MODEL_EXE=bbtm infer
 
 all:$(MODEL_EXE) 
 
-$(MODEL_EXE):$(MODEL_OBJ)
-	$(CC) $(MODEL_OBJ) -o $@
+bbtm:BurstyBTM.o main.o
+	$(CC) $^ -o $@
 
-main.o:BurstyBTM.h
+infer:infer.o
+	$(CC) $^ -o $@
+
+mail.o:BurstyBTM.h
 BurstyBTM.o:BurstyBTM.h biterm.h doc.h
+infer.o:infer.h doc.h
 
 %.o:%.cpp
 	$(CC) $(INCLUDE) $(CFLAGS) $< -o $@ 
 
 clean:
-	rm -rf $(MODEL_OBJ) $(MODEL_EXE)
+	rm -rf *.o $(MODEL_EXE)
 

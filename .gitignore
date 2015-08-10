@@ -1,0 +1,6 @@
+*~
+*.o
+*.bin
+src/bbtm
+src/infer
+.idea/
