@@ -1,4 +1,4 @@
-#Code of Bursty Biterm Topic Model
+# Code of Bursty Biterm Topic Model
 
 
 Bursty biterm topic model (BurstyBTM) is a topic model for bursty discovery in short text streams such as microblogs. 
